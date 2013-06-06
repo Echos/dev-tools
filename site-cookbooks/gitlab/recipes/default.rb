@@ -227,6 +227,7 @@ end
 service 'gitlab' do
 	supports :status=>true , :restart=>true , :reload => true
 	action [:enable, :start ]
+	not_if { ::File.exist? ("/home/git/gitlab/tmp/sockets/gitlab.sockets") }
 end
 
 service 'iptables' do
